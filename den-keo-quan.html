@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập 33 - Đèn Kéo Quân 3D</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* CSS cho hiệu ứng Đèn kéo quân */
+        body {
+            background: #1a1a1a; /* Màu tối để nổi bật đèn */
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container-3d {
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px; /* Tạo độ sâu 3D */
+            margin-top: 50px;
+        }
+
+        .lantern {
+            width: 200px;
+            height: 250px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            animation: rotateAnim 12s linear infinite;
+        }
+
+        /* YÊU CẦU: Rê chuột vào thì dừng quay */
+        .lantern:hover {
+            animation-play-state: paused;
+            cursor: pointer;
+        }
+
+        @keyframes rotateAnim {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        .face {
+            position: absolute;
+            width: 200px;
+            height: 250px;
+            border: 4px solid #f1c40f;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px #f1c40f;
+        }
+
+        .face img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Công thức xếp 6 mặt (mỗi mặt lệch 60 độ) 
+           Khoảng cách translateZ = (width/2) / tan(30deg) ≈ 173px
+        */
+        .face:nth-child(1) { transform: rotateY(0deg) translateZ(180px); }
+        .face:nth-child(2) { transform: rotateY(60deg) translateZ(180px); }
+        .face:nth-child(3) { transform: rotateY(120deg) translateZ(180px); }
+        .face:nth-child(4) { transform: rotateY(180deg) translateZ(180px); }
+        .face:nth-child(5) { transform: rotateY(240deg) translateZ(180px); }
+        .face:nth-child(6) { transform: rotateY(300deg) translateZ(180px); }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #f1c40f;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" style="color: white; text-decoration: none;">🏠 Quay lại Portfolio</a>
+    </nav>
+
+    <h2 style="text-align: center; margin-top: 20px;">Đèn Kéo Quân 3D - Bài Tập 33</h2>
+
+    <div class="container-3d">
+        <div class="lantern" id="denKéoQuân">
+            <div class="face"><img src="images/ảnh 1.jpg" alt="Ảnh 1"></div>
+            <div class="face"><img src="images/ảnh 2.jpg" alt="Ảnh 2"></div>
+            <div class="face"><img src="images/ảnh 3.jpg" alt="Ảnh 3"></div>
+            <div class="face"><img src="images/ảnh 4.jpg" alt="Ảnh 4"></div>
+            <div class="face"><img src="images/ảnh 5.jpg" alt="Ảnh 5"></div>
+            <div class="face"><img src="images/ảnh 6.jpg" alt="Ảnh 6"></div>
+        </div>
+    </div>
+
+    <p style="text-align: center; color: #888;">(Rê chuột vào đèn để dừng lại)</p>
+
+    <script>
+        // Javascript bổ trợ nếu bạn muốn xử lý thêm logic khi hover
+        const lantern = document.getElementById('denKéoQuân');
+        
+        lantern.addEventListener('mouseenter', () => {
+            console.log("Đèn đã dừng theo yêu cầu bài tập.");
+        });
+
+        lantern.addEventListener('mouseleave', () => {
+            console.log("Đèn đang quay tiếp...");
+        });
+    </script>
+</body>
+</html>
